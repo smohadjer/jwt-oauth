@@ -1,0 +1,19 @@
+POST http://localhost:3000/api/authenticate
+Content-Type: application/json
+
+{
+	"username": "admin",
+	"password": "test"
+}
+
+###
+
+POST https://authorization-server-saeid-fastmailfm.vercel.app/api/authenticate
+
+{
+	"username": "admin",
+	"password": "test"
+}
+
+
+
