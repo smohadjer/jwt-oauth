@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+// cors middleware for vercel serverless
 const allowCors = fn => async (req, res) => {
 	res.setHeader('Access-Control-Allow-Credentials', true)
 	res.setHeader('Access-Control-Allow-Origin', '*')
@@ -14,7 +15,7 @@ const allowCors = fn => async (req, res) => {
 	  'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
 	)
 
-	console.log(res.getHeaders());
+	//console.log(res.getHeaders());
 
 	if (req.method === 'OPTIONS') {
 	  res.status(200).end()
@@ -22,7 +23,7 @@ const allowCors = fn => async (req, res) => {
 	}
 
 	return await fn(req, res)
-  }
+}
 
 const handler = async (req, res) => {
 	const {username, password} = req.body;

@@ -8,7 +8,7 @@ Content-Type: application/json
 
 ###
 
-POST https://authorization-server-saeid-fastmailfm.vercel.app/api/authenticate
+POST https://authorization-server-woad.vercel.app/api/authenticate
 
 {
 	"username": "admin",
