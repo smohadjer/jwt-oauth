@@ -3,7 +3,24 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export default async (req, res) => {
+const allowCors = fn => async (req, res) => {
+	res.setHeader('Access-Control-Allow-Credentials', true)
+	res.setHeader('Access-Control-Allow-Origin', '*')
+	// another common pattern
+	// res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+	res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+	res.setHeader(
+	  'Access-Control-Allow-Headers',
+	  'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+	)
+	if (req.method === 'OPTIONS') {
+	  res.status(200).end()
+	  return
+	}
+	return await fn(req, res)
+  }
+
+const handler = async (req, res) => {
 	const {username, password} = req.body;
 	console.log(req.body);
 
@@ -36,6 +53,8 @@ export default async (req, res) => {
 		res.status(401).end();
 	}
 }
+
+module.exports = allowCors(handler)
 
 function setCookieExpressServer(res, token) {
   // use secure on production so cookie is sent only over https
