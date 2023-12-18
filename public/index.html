@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>test</title>
+</head>
+<body>
+    <form method="POST" action="/api/authenticate">
+      <p><label>Username: <input required name="username" value="admin"></label></p>
+      <p><label>Password: <input required name="password" value="test"></label></p>
+      <button>Authenticate</button>
+    </form>
+
+    <script type="module">
+      document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const data = new FormData(e.target);
+
+        fetch(e.target.action, {
+          method: e.target.getAttribute('method'),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(Object.fromEntries(data))
+        })
+        .then((response) => response.json())
+        .then((json) => {
+          console.log(json);
+        }).catch(function(error) {
+            console.error(` Error: ${error}`);
+        });
+      });
+    </script>
+</body>
+</html>
