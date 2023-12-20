@@ -6,33 +6,32 @@
   <title>test</title>
 </head>
 <body>
-    <form method="POST" action="/api/authenticate">
+    <form style="background: #eee; padding: 1em;" method="POST" action="/api/authenticate">
       <p><label>Username: <input required name="username" value="admin"></label></p>
       <p><label>Password: <input required name="password" value="test"></label></p>
-      <button>Authenticate</button>
+      <button>Authenticate to use API</button>
     </form>
+	<br>
+	<button id="api">Access API</button>
+	<div id="api-status"></div>
 
     <script type="module">
-      document.querySelector('form').addEventListener('submit', (e) => {
-        e.preventDefault();
+		import { formHandler, callAPI} from './js/lib.js';
 
-        const data = new FormData(e.target);
+		const state = {
+			endpoint: 'https://api-saeid-fastmailfm.vercel.app/api/quotes',
+			accessToken: undefined
+		};
 
-        fetch(e.target.action, {
-          method: e.target.getAttribute('method'),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(Object.fromEntries(data))
-        })
-        .then((response) => response.json())
-        .then((json) => {
-          console.log(json);
-        }).catch(function(error) {
-            console.error(` Error: ${error}`);
-        });
-      });
+		const apiStatusElm = document.getElementById('api-status');
+
+		document.getElementById('api').addEventListener('click', (e) => {
+			callAPI(state, apiStatusElm);
+		});
+
+		document.querySelector('form').addEventListener('submit', (e) => {
+			formHandler(e, state);
+		});
     </script>
 </body>
 </html>

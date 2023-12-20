@@ -8,12 +8,19 @@ Content-Type: application/json
 
 ###
 
-POST https://authorization-server-woad.vercel.app/api/authenticate
+POST https://authorization-server-saeid-fastmailfm.vercel.app/api/authenticate
+Content-Type: application/json
 
 {
 	"username": "admin",
 	"password": "test"
 }
+
+###
+
+GET http://localhost:3000/api/getTokens
+Content-Type: application/json
+
 
 
 
