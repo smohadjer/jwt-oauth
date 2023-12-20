@@ -4,16 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>test</title>
+  <style>
+	p {
+		max-width: 80ch;
+	}
+
+	h2 {
+		margin-top: 0;
+	}
+
+	.flex {
+		display: flex;
+		gap: 1em;
+	}
+
+	.flex > * {
+		padding: 1em;
+		background: #eee;
+	}
+
+	#api-status {
+		overflow: auto;
+		max-height: 50vh;
+	}
+
+    .loading {
+      width: 1em;
+      height: 1em;
+      border: 0.2em solid #999;
+      border-top-color: transparent;
+      border-radius: 50%;
+      animation: loadingspin 1s linear infinite;
+      display: inline-block;
+    }
+
+    @keyframes loadingspin {
+      100% {
+          transform: rotate(360deg)
+      }
+    }
+  </style>
 </head>
 <body>
-    <form style="background: #eee; padding: 1em;" method="POST" action="/api/authenticate">
-      <p><label>Username: <input required name="username" value="admin"></label></p>
-      <p><label>Password: <input required name="password" value="test"></label></p>
-      <button>Authenticate to use API</button>
-    </form>
-	<br>
+	<h1>OAuth authentication via JWT access and refresh tokens</h1>
+	<p>If you try to access the API endpoint <a href="https://api-saeid-fastmailfm.vercel.app/api/quotes">https://api-saeid-fastmailfm.vercel.app/api/quotes</a> without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
 	<button id="api">Access API</button>
-	<div id="api-status"></div>
+	<br><br>
+    <div class="flex">
+		<form id="login" method="POST" action="/api/authenticate">
+			<h2>Login</h2>
+			<p><label>Username: <input required name="username" placeholder="admin"></label></p>
+			<p><label>Password: <input type="password" required name="password" placeholder="test"></label></p>
+			<button>Login</button>
+		</form>
+		<div>
+			<h2>API Result</h2>
+			<div id="api-status"></div>
+		</div>
+
+	</div>
 
     <script type="module">
 		import { formHandler, callAPI} from './js/lib.js';
@@ -29,7 +78,7 @@
 			callAPI(state, apiStatusElm);
 		});
 
-		document.querySelector('form').addEventListener('submit', (e) => {
+		document.querySelector('#login').addEventListener('submit', (e) => {
 			formHandler(e, state);
 		});
     </script>

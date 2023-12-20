@@ -13,6 +13,7 @@ const requestNewTokens = (state, apiStatusElm) => {
 		callAPI(state, apiStatusElm);
 	}).catch(function(error) {
 		console.error(` Error: ${error}`);
+		apiStatusElm.innerHTML = 'You can not access API without access token. To fetch new token you must first login.';
 	});
 }
 
@@ -32,6 +33,8 @@ export const formHandler = (e, state) => {
 	.then((json) => {
 		console.log(json.accessToken);
 		state.accessToken = json.accessToken;
+		alert('This page now has access and refresh tokens! You can now access the API endpoint from this page even after reloading the page without need to login again.')
+		e.target.reset();
 	}).catch(function(error) {
 		console.error(` Error: ${error}`);
 	});
@@ -42,6 +45,7 @@ export const callAPI = (state, apiStatusElm) => {
 
 	if (!state.accessToken) {
 		requestNewTokens(state, apiStatusElm);
+		return;
 	}
 
 	fetch(state.endpoint, {
@@ -55,10 +59,10 @@ export const callAPI = (state, apiStatusElm) => {
 	.then((response) => response.json())
 	.then((json) => {
 		if (json.error) {
-			apiStatusElm.innerHTML = `<p style="color:red">${json.error}</p>`;
+			apiStatusElm.innerHTML = `Error due to not having access token or using token that is expired. Fetching new tokens...`;
 			requestNewTokens(state, apiStatusElm)
 		} else {
-			apiStatusElm.innerHTML = `<p>${JSON.stringify(json)}</p>`;
+			apiStatusElm.innerHTML = `${JSON.stringify(json)}`;
 		}
 	}).catch(function(err) {
 		console.error(` Err: ${err}`);
