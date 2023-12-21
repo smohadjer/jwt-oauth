@@ -55,7 +55,7 @@ export const callAPI = (state, apiStatusElm) => {
 	// https://stackoverflow.com/questions/41253228/preflight-or-cors-error-on-every-request
 	fetch(state.endpoint, {
 		method: 'GET',
-		mode: "cors",
+		//mode: "cors",
 		headers: {
 		'Authorization': 'Bearer ' +  state.accessToken,
 		'Content-Type': 'application/json'
