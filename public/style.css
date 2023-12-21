@@ -1,0 +1,22 @@
+p {
+	max-width: 80ch;
+}
+
+h2 {
+	margin-top: 0;
+}
+
+.flex {
+	display: flex;
+	gap: 1em;
+}
+
+.flex > * {
+	padding: 1em;
+	background: #eee;
+}
+
+#api-status {
+	overflow: auto;
+	max-height: 50vh;
+}

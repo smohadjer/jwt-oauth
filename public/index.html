@@ -4,50 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>test</title>
-  <style>
-	p {
-		max-width: 80ch;
-	}
-
-	h2 {
-		margin-top: 0;
-	}
-
-	.flex {
-		display: flex;
-		gap: 1em;
-	}
-
-	.flex > * {
-		padding: 1em;
-		background: #eee;
-	}
-
-	#api-status {
-		overflow: auto;
-		max-height: 50vh;
-	}
-
-    .loading {
-      width: 1em;
-      height: 1em;
-      border: 0.2em solid #999;
-      border-top-color: transparent;
-      border-radius: 50%;
-      animation: loadingspin 1s linear infinite;
-      display: inline-block;
-    }
-
-    @keyframes loadingspin {
-      100% {
-          transform: rotate(360deg)
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<h1>OAuth authentication via JWT access and refresh tokens</h1>
-	<p>If you try to access the API endpoint <a href="https://api-saeid-fastmailfm.vercel.app/api/quotes">https://api-saeid-fastmailfm.vercel.app/api/quotes</a> without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
+	<p>If you try to access the API endpoint <a href="https://api-jwt.vercel.app/api/quotes">https://api-jwt.vercel.app/api/quotes</a> without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
 	<p>
 		This implementation uses jwt access and refresh tokens. Access tokens expire after 30 seconds, refresh tokens remain valid for one month. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
 	</p>
@@ -64,14 +25,13 @@
 			<h2>API Result</h2>
 			<div id="api-status"></div>
 		</div>
-
 	</div>
 
     <script type="module">
 		import { formHandler, callAPI} from './js/lib.js';
 
 		const state = {
-			endpoint: 'https://api-saeid-fastmailfm.vercel.app/api/quotes',
+			endpoint: 'https://api-jwt.vercel.app/api/quotes',
 			accessToken: undefined
 		};
 
