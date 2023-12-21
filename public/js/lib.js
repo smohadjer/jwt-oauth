@@ -48,6 +48,11 @@ export const callAPI = (state, apiStatusElm) => {
 		return;
 	}
 
+	/* since we are adding custom headers in this request, browsers will send
+	a preflight request to the server and we need to make sure the server that
+	responds sets Access-Control-Allow-Headers: '*' in response otherwise preflight
+	will fail and no request will be sent to endpoint. */
+	// https://stackoverflow.com/questions/41253228/preflight-or-cors-error-on-every-request
 	fetch(state.endpoint, {
 		method: 'GET',
 		mode: "cors",
