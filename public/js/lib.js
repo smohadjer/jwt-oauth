@@ -17,7 +17,14 @@ const requestNewTokens = (state, apiStatusElm) => {
 	});
 }
 
-export const formHandler = (e, state) => {
+export const deleteRefreshTokenCookie = () => {
+	console.log('deleting refresh token...');
+	fetch('/api/logout')
+	.then(response => response.json())
+	.then(json => console.log(json.message));
+}
+
+export const loginHandler = (e, state) => {
 	e.preventDefault();
 	const data = new FormData(e.target);
 
@@ -41,7 +48,7 @@ export const formHandler = (e, state) => {
 };
 
 export const callAPI = (state, apiStatusElm) => {
-	console.log(state.accessToken);
+	console.log('accessToken:', state.accessToken);
 
 	if (!state.accessToken) {
 		requestNewTokens(state, apiStatusElm);

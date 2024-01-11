@@ -14,6 +14,7 @@
 		This implementation uses jwt access and refresh tokens. Access tokens expire after 30 seconds, refresh tokens remain valid for one month. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
 	</p>
 	<button id="api">Access API</button>
+	<button id="logout">Logout</button>
 	<br><br>
     <div class="flex">
 		<form id="login" method="POST" action="/api/authenticate">
@@ -29,7 +30,11 @@
 	</div>
 
     <script type="module">
-		import { formHandler, callAPI} from './js/lib.js';
+		import {
+			loginHandler,
+			callAPI,
+			deleteRefreshTokenCookie
+		} from './js/lib.js';
 
 		const state = {
 			endpoint: 'https://api-jwt.vercel.app/api',
@@ -38,12 +43,17 @@
 
 		const apiStatusElm = document.getElementById('api-status');
 
+		document.getElementById('logout').addEventListener('click', (e) => {
+			state.accessToken = undefined;
+			deleteRefreshTokenCookie();
+		});
+
 		document.getElementById('api').addEventListener('click', (e) => {
 			callAPI(state, apiStatusElm);
 		});
 
 		document.querySelector('#login').addEventListener('submit', (e) => {
-			formHandler(e, state);
+			loginHandler(e, state);
 		});
     </script>
 </body>
