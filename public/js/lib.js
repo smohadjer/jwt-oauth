@@ -18,9 +18,13 @@ const requestNewTokens = (state, apiStatusElm) => {
 }
 
 export const deleteRefreshTokenCookie = () => {
-	console.log('deleting refresh token...');
+	/* no-cache directive is necessary otherwise cookie may not be deleted if
+	request returns a 304 status as it happens with Vercel server */
 	fetch('/api/logout', {
-		cache: 'reload'
+		method: 'GET',
+		headers: {
+			'Cache-Control': 'no-cache'
+		}
 	})
 	.then(response => response.json())
 	.then(json => console.log(json.message));
