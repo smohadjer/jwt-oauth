@@ -9,7 +9,7 @@
 <body>
 	<h1>OAuth authentication via JWT access and refresh tokens</h1>
 	<p><a href="https://github.com/smohadjer/jwt-oauth">GitHub</a></p>
-	<p>If you try to access the API endpoint https://api-jwt.vercel.app/api/quotes via the button below without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
+	<p>If you try to access the API endpoint https://api-jwt.vercel.app/api via the button below without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
 	<p>
 		This implementation uses jwt access and refresh tokens. Access tokens expire after 30 seconds, refresh tokens remain valid for one month. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
 	</p>
@@ -32,7 +32,7 @@
 		import { formHandler, callAPI} from './js/lib.js';
 
 		const state = {
-			endpoint: 'https://api-jwt.vercel.app/api/quotes',
+			endpoint: 'https://api-jwt.vercel.app/api',
 			accessToken: undefined
 		};
 
