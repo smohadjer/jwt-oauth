@@ -19,7 +19,9 @@ const requestNewTokens = (state, apiStatusElm) => {
 
 export const deleteRefreshTokenCookie = () => {
 	console.log('deleting refresh token...');
-	fetch('/api/logout')
+	fetch('/api/logout', {
+		cache: 'no-cache'
+	})
 	.then(response => response.json())
 	.then(json => console.log(json.message));
 }
