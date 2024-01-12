@@ -39,7 +39,7 @@ export async function setTokens(req, res) {
 
 	const accessToken = await new SignJWT({ 'username': req.body.username })
 		.setProtectedHeader({ alg: 'HS256' })
-		.setExpirationTime('30s')
+		.setExpirationTime('15s')
 		.sign(secret);
 
 	const refreshToken = await new SignJWT({ 'username': req.body.username })

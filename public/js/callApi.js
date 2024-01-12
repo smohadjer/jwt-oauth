@@ -6,6 +6,7 @@ export default (state) => {
 	const apiStatusElm = document.getElementById('api-status');
 
 	if (!state.accessToken) {
+		console.log('requesting new tokens...');
 		requestNewTokens(state, apiStatusElm);
 		return;
 	}
