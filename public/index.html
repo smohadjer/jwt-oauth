@@ -11,13 +11,13 @@
 	<p><a href="https://github.com/smohadjer/jwt-oauth">GitHub</a></p>
 	<p>If you try to access the API endpoint https://api-jwt.vercel.app/api via the button below without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
 	<p>
-		This implementation uses jwt access and refresh tokens. Access tokens expire after 30 seconds, refresh tokens remain valid for one month. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
+		This implementation uses jwt access and refresh tokens. Access tokens expire after 30 seconds, refresh tokens remain valid for one week. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
 	</p>
 	<button id="api">Access API</button>
 	<button id="logout">Logout</button>
 	<br><br>
     <div class="flex">
-		<form id="login" method="POST" action="/api/authenticate">
+		<form id="login" method="POST" action="/api/login">
 			<h2>Login</h2>
 			<p><label>Username: <input required name="username" placeholder="admin"></label></p>
 			<p><label>Password: <input type="password" required name="password" placeholder="test"></label></p>
@@ -28,33 +28,6 @@
 			<div id="api-status"></div>
 		</div>
 	</div>
-
-    <script type="module">
-		import {
-			loginHandler,
-			callAPI,
-			deleteRefreshTokenCookie
-		} from './js/lib.js';
-
-		const state = {
-			endpoint: 'https://api-jwt.vercel.app/api',
-			accessToken: undefined
-		};
-
-		const apiStatusElm = document.getElementById('api-status');
-
-		document.getElementById('logout').addEventListener('click', (e) => {
-			state.accessToken = undefined;
-			deleteRefreshTokenCookie();
-		});
-
-		document.getElementById('api').addEventListener('click', (e) => {
-			callAPI(state, apiStatusElm);
-		});
-
-		document.querySelector('#login').addEventListener('submit', (e) => {
-			loginHandler(e, state);
-		});
-    </script>
+    <script type="module" src="/js/main.js"></script>
 </body>
 </html>

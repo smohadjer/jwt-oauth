@@ -4,17 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const authenticateWithLoginCredentials = (req) => {
-	const {username, password} = req.body;
-	if (username === process.env.username &&
-		password === process.env.password) {
-		return true;
-	} else {
-		return false;
-	}
-};
-
-const authenticateWithRefreshToken = async (req) => {
+const isRefreshTokenValid = async (req) => {
 	if (req.cookies?.refreshtoken) {
 		const refreshToken = req.cookies.refreshtoken;
 		const secret = new TextEncoder().encode(process.env.secret);
@@ -30,7 +20,7 @@ const authenticateWithRefreshToken = async (req) => {
 }
 
 export default async (req, res) => {
-	if (await authenticateWithRefreshToken(req) || authenticateWithLoginCredentials(req)) {
+	if (await isRefreshTokenValid(req)) {
 		setTokens(req, res);
 	} else {
 		res.status(401).end();

@@ -48,9 +48,12 @@ export async function setTokens(req, res) {
 	.sign(secret);
 
 
-	// send refresh token in cookie and access token in body of response
+	// send refresh token in a httponly cookie
 	setCookie(res, refreshToken);
-	res.json({accessToken});
+
+	// send access token in body of response
+	// here for sake of testing in http tools we send refreshtoken as well, but there is no need for that
+	res.json({accessToken, refreshToken});
 };
 
 

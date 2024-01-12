@@ -1,3 +1,4 @@
+// Authenticating via login credentials
 POST http://localhost:3000/api/authenticate
 Content-Type: application/json
 
@@ -6,15 +7,26 @@ Content-Type: application/json
 	"password": "test"
 }
 
+
 ###
 
-POST https://jwt-oauth.vercel.app/api/authenticate
-Content-Type: application/json
 
-{
-	"username": "admin",
-	"password": "test"
-}
+
+// Authenticating via refresh token
+GET http://localhost:3000/api/authenticate
+Content-Type: application/json
+Cookie: refreshtoken=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzA1NjY0ODAxfQ.QaymRQrLC2Wuh5RAXsJuWyaiA3R_IiiaiBnNHTHVOE0
+
+
+###
+
+
+// Accessing external api using access token
+GET https://api-jwt.vercel.app/api
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzA1MDYwMTU3fQ.d7_ihf0RHK2kGKLHxrDfNV1eeTMFJ_aRgJOBc0c3OFM
+
+
 
 
 
