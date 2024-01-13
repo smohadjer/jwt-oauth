@@ -1,5 +1,5 @@
 // Authenticating via login credentials
-POST http://localhost:3000/api/authenticate
+POST http://localhost:3000/api/login
 Content-Type: application/json
 
 {
@@ -13,9 +13,9 @@ Content-Type: application/json
 
 
 // Authenticating via refresh token
-GET http://localhost:3000/api/authenticate
+GET http://localhost:3000/api/fetchTokens
 Content-Type: application/json
-Cookie: refreshtoken=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzA1NjY0ODAxfQ.QaymRQrLC2Wuh5RAXsJuWyaiA3R_IiiaiBnNHTHVOE0
+Cookie: refreshtoken=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzA1Njc2MTQyfQ.YBrXZZkJCrSnL7kqIeK35GLvZ8dN5fkg6RogvhLZqQ0
 
 
 ###
@@ -24,7 +24,7 @@ Cookie: refreshtoken=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNz
 // Accessing external api using access token
 GET https://api-jwt.vercel.app/api
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzA1MDYwMTU3fQ.d7_ihf0RHK2kGKLHxrDfNV1eeTMFJ_aRgJOBc0c3OFM
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNzA1MDcxMzA3fQ.xBySPLGnHpSqaXTIwdSWRGSWeCXjIPsNYY2vItA-ZE0
 
 
 

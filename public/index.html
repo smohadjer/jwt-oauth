@@ -11,7 +11,7 @@
 	<p><a href="https://github.com/smohadjer/jwt-oauth">GitHub</a></p>
 	<p>If you try to access the API endpoint https://api-jwt.vercel.app/api via the button below without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
 	<p>
-		This implementation uses jwt access and refresh tokens. Access tokens expire after 15 seconds, refresh tokens remain valid for one week. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
+		This implementation uses jwt access and refresh tokens. Access tokens expire after 30 seconds, refresh tokens remain valid for one week. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
 	</p>
 	<button id="api">Access API</button>
 	<button id="logout">Logout</button>
