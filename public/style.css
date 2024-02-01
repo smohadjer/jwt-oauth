@@ -16,7 +16,7 @@ h2 {
 	background: #eee;
 }
 
-#api-status {
+#console {
 	overflow: auto;
 	max-height: 50vh;
 }

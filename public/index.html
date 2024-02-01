@@ -8,11 +8,8 @@
 </head>
 <body>
 	<h1>OAuth authentication via JWT access and refresh tokens</h1>
-	<p><a href="https://github.com/smohadjer/jwt-oauth">GitHub</a></p>
-	<p>If you try to access the API endpoint https://api-jwt.vercel.app/api via the button below without logging in first or without a jwt access or refresh token it will return a 401 error as the API expects an authorization header (Bearer &lt;token&gt;) in incoming requests.</p>
-	<p>
-		This implementation uses jwt access and refresh tokens. Access tokens expire after 30 seconds, refresh tokens remain valid for one week. Refresh tokens are stored in HttpOnly cookie to allow access to api even after a page reload. Access tokens are kept in browser memory only.
-	</p>
+	<p><a href="https://github.com/smohadjer/jwt-oauth">Code on GitHub</a></p>
+	<p>If you try to access the API via the button below without logging in first (i.e. without obtainined a jwt access or refresh token) it will return a 401 error as the API endpoint is protected via OAuth authorization. This implementation uses jwt access and refresh tokens. Access token is kept in browser memory and expires after 30 seconds, refresh token remains valid for one week and is stored in httpOnly cookie to allow access to api even after a page reload.</p>
 	<button id="api">Access API</button>
 	<button id="logout">Logout</button>
 	<br><br>
@@ -24,8 +21,8 @@
 			<button>Login</button>
 		</form>
 		<div>
-			<h2>API Result</h2>
-			<div id="api-status"></div>
+			<h2>Console</h2>
+			<div id="console"></div>
 		</div>
 	</div>
     <script type="module" src="/js/main.js"></script>

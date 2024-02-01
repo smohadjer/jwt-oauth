@@ -1,6 +1,5 @@
-export default (e, state) => {
+export default (state, consoleElm) => {
 	state.accessToken = undefined;
-
 	/* no-cache directive is necessary otherwise cookie may not be deleted if
 	request returns a 304 status as it happens with Vercel server */
 	fetch('/api/logout', {
@@ -10,5 +9,7 @@ export default (e, state) => {
 		}
 	})
 	.then(response => response.json())
-	.then(json => console.log(json.message));
+	.then(json => {
+		consoleElm.innerHTML = 'Refresh and access tokens are removed!';
+	});
 }

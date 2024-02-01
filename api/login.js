@@ -10,6 +10,6 @@ export default async (req, res) => {
 		password === process.env.password) {
 		setTokens(req, res);
 	} else {
-		res.status(401).end();
+		res.status(401).json({'error': 'Invalid credentials'});
 	}
 };
